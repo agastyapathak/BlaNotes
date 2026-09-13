@@ -8,11 +8,13 @@ commands:
     /download  - export all notes to a .txt file
     /help      - show the command list again
     /exit      - quit the app
+    /github - open GitHub Repository
 """
 
 
 import json
 import os
+import webbrowser
 from datetime import datetime
 
 NOTES_FILE = "blanotes_history.json"
@@ -51,7 +53,7 @@ def show_history(notes):
 
 def delete_notes(notes):
     if not notes:
-        print("📭 No notes to delete.")
+        print("Process interupted. No notes to delete…")
         return notes
 
     show_history(notes)
@@ -74,9 +76,9 @@ def delete_notes(notes):
             if 0 <= index < len(notes):
                 removed = notes.pop(index)
                 save_notes(notes)
-                print(f"🗑️  Deleted note: {removed['text']}")
+                print(f" Deleted note: {removed['text']}")
             else:
-                print("⚠️  Invalid note number.")
+                print("⚠️Invalid function.")
         except ValueError:
             print("⚠️  Invalid input.")
 
@@ -102,11 +104,15 @@ Commands:
     /history   - show all saved notes
     /delete    - delete a note (by number) or all notes
     /download  - export all notes to a .txt file
+    /github    - open GitHub profile
     /help      - show this help message
     /exit      - quit the app
-
-Anything else you type will be saved as a new note.
 """)
+
+
+def open_github():
+    webbrowser.open("https://github.com/agastyapathak")
+    print("🌐 Opening GitHub profile...")
 
 
 def main():
@@ -115,12 +121,12 @@ def main():
     print_help()
 
     while True:
-        user_input = input("BlaNotes> ").strip()
+        user_input = input("BlaNotes > ").strip()
 
         if user_input == "":
             continue
         elif user_input.lower() == "/exit":
-            print("👋 Bye!")
+            print("Programm interupted. Exiting BlaNotes...")
             break
         elif user_input.lower() == "/history":
             show_history(notes)
@@ -128,6 +134,8 @@ def main():
             notes = delete_notes(notes)
         elif user_input.lower() == "/download":
             download_notes(notes)
+        elif user_input.lower() == "/github":
+            open_github()
         elif user_input.lower() == "/help":
             print_help()
         else:
