@@ -23,6 +23,9 @@ Just use BlaNotes — it lives in your terminal, you can just write quick notes 
 
 /exit - Quit the programm
 
+/github - opens GitHub Repository on browser
+
+/font - change Font Style: Italic,Bold,Underline
 ## Activate BlaNotes
 
 BlaNotes runs natively,so now download is required,
